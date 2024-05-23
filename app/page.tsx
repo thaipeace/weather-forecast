@@ -8,7 +8,7 @@ import {
 import { useEffect, Suspense } from "react";
 
 export default function Home() {
-  const { weather, setWeather } = useLocationContext();
+  const { weather, setWeather, errorMsg } = useLocationContext();
 
   useEffect(() => {
     const firstFunction = async () => {
@@ -20,7 +20,7 @@ export default function Home() {
 
   return (
     <Suspense fallback={<WeatherSkeleton />}>
-      <Weather data={weather} />
+      <Weather data={weather} errorMsg={errorMsg} />
     </Suspense>
   );
 }

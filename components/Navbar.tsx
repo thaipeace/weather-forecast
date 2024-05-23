@@ -15,6 +15,7 @@ const Navbar = () => {
         try {
             const weather = await getWeatherByLocationService(term);
             setWeather(weather);
+            setErrorMsg(null);
         } catch (error) {
             setWeather(null);
             setErrorMsg("404");
@@ -31,7 +32,7 @@ const Navbar = () => {
                     <Input
                         type="text"
                         placeholder="Search Location..."
-                        className="sm:w-[100px] lg:w-[300px] w-[150px]"
+                        className="sm:w-[150px] lg:w-[400px] w-[200px]"
                         value={search}
                         onChange={(event) => setSearch(event.target.value)}
                     />

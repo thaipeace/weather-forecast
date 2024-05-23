@@ -2,8 +2,8 @@ import { WeatherResponse } from "@/models";
 import { getTime } from "@/utils";
 import Image from "next/image";
 
-const Weather = ({ data }: { data: WeatherResponse | null }) => {
-    let description = "imageNotFound";
+const Weather = ({ data, errorMsg }: { data: WeatherResponse | null; errorMsg: string | null }) => {
+    let description = "";
     let [day, time] = getTime(0);
 
     if (data) {
@@ -40,6 +40,19 @@ const Weather = ({ data }: { data: WeatherResponse | null }) => {
                         </h3>
                     </div>
                 </div>
+            </div>
+        </section>)
+        ||
+        errorMsg && (<section className="flex flex-col justify-center mt-3 mb-5 padding-x">
+            <div className="relative">
+                <Image
+                    src={`/weather/imageNotFound.webp`}
+                    width={1000}
+                    height={1000}
+                    alt="weather-img"
+                    priority={true}
+                    className="w-full h-[50vh] rounded-lg object-cover"
+                />
             </div>
         </section>)
     );
